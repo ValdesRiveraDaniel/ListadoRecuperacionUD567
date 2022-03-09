@@ -16,7 +16,7 @@ import com.example.listadorecuperacionud567.databinding.ProductoBinding
 import modelos.ModeloProductos
 
 
-class FragmentListadoProductos : Fragment() {
+class       FragmentListadoProductos : Fragment() {
 
     private lateinit var binding: FragmentListadoProductosBinding
     private lateinit var adapter: PLAdapter
@@ -44,6 +44,14 @@ class FragmentListadoProductos : Fragment() {
         }
 
         var list  = mutableListOf<ModeloProductos>()
+        list.add(ModeloProductos("0","APEX","descripcion",0,0,0,true,"https://logodownload.org/wp-content/uploads/2019/02/apex-legends-logo-3.png"))
+        list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+        list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
         list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
         list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
         list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
@@ -52,6 +60,7 @@ class FragmentListadoProductos : Fragment() {
         list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
         list.add(ModeloProductos("0","nombre","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
         list.add(ModeloProductos("0","chocolate","descripcion",0,0,0,true,"https://www.pngmart.com/files/17/Thing-PNG-Free-Download.png"))
+
         adapter.submitList(list)
         binding.rvListadoProductos.adapter = adapter
         binding.rvListadoProductos.layoutManager = GridLayoutManager(context,2)
