@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentListadoProductos">
+
+    <fragment
+        android:id="@+id/fragmentListadoProductos"
+        android:name="ui.FragmentListadoProductos"
+        android:label="fragment_listado_productos"
+        tools:layout="@layout/fragment_listado_productos" >
+        <action
+            android:id="@+id/action_fragmentListadoProductos_to_detalleProductos"
+            app:destination="@id/detalleProductos" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleProductos"
+        android:name="ui.DetalleProductos"
+        android:label="fragment_detalle_productos"
+        tools:layout="@layout/fragment_detalle_productos" />
+</navigation>
