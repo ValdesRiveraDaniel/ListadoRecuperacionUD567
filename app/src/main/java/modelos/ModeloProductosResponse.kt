@@ -1,6 +1,6 @@
 package modelos
 
-data class ModeloProductos (
+data class ModeloProductosResponse (
 
     val id: String,
     val nombre: String,

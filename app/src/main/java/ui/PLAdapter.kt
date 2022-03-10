@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.ProductoBinding
 import com.squareup.picasso.Picasso
-import modelos.ModeloProductos
+import modelos.ModeloProductosResponse
 
-class PLAdapter(private val onClickProductos: (ModeloProductos) -> Unit) :
-    ListAdapter<ModeloProductos, PLAdapter.ViewHolder>(DiffUtilCallback) {
+class PLAdapter(private val onClickProductos: (ModeloProductosResponse) -> Unit) :
+    ListAdapter<ModeloProductosResponse, PLAdapter.ViewHolder>(DiffUtilCallback) {
 
     inner class ViewHolder(val binding: ProductoBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -31,13 +31,13 @@ class PLAdapter(private val onClickProductos: (ModeloProductos) -> Unit) :
 
 }
 
-private object DiffUtilCallback : DiffUtil.ItemCallback<ModeloProductos>() {
+private object DiffUtilCallback : DiffUtil.ItemCallback<ModeloProductosResponse>() {
 
-    override fun areItemsTheSame(oldItem: ModeloProductos, newItem: ModeloProductos): Boolean {
+    override fun areItemsTheSame(oldItem: ModeloProductosResponse, newItem: ModeloProductosResponse): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: ModeloProductos, newItem: ModeloProductos): Boolean {
+    override fun areContentsTheSame(oldItem: ModeloProductosResponse, newItem: ModeloProductosResponse): Boolean {
         return oldItem.id == newItem.id
     }
 
