@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_fragmentListadoProductos_to_detalleProductos"
             app:destination="@id/detalleProductos" />
+        <action
+            android:id="@+id/action_fragmentListadoProductos_to_favFragment"
+            app:destination="@id/favFragment" />
     </fragment>
     <fragment
         android:id="@+id/detalleProductos"
         android:name="ui.DetalleProductos"
         android:label="fragment_detalle_productos"
         tools:layout="@layout/fragment_detalle_productos" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="ui.favFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" />
 </navigation>
