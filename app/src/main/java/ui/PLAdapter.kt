@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.ProductoBinding
 import com.squareup.picasso.Picasso
-import modelos.ModeloProductosResponse
 
 class PLAdapter(private val onClickProductos: (ModeloProductosResponse) -> Unit) :
     ListAdapter<ModeloProductosResponse, PLAdapter.ViewHolder>(DiffUtilCallback) {

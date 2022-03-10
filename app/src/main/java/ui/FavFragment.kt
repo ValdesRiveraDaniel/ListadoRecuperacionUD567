@@ -20,4 +20,6 @@ class favFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_fav, container, false)
     }
 
+
+
 }

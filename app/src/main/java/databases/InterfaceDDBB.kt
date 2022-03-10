@@ -1,4 +1,4 @@
-package modelos
+package databases
 
 import androidx.room.*
 
@@ -13,7 +13,7 @@ interface interfaceDDBB {
     fun findByTitle(id: String): ModeloProductosBBDD
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg todo: ModeloProductosBBDD)
+    fun insert(vararg todo: ModeloProductosBBDD)
 
     @Update
     fun updateTodo(vararg todos: ModeloProductosBBDD)
