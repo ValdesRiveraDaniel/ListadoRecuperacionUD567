@@ -1,44 +1,46 @@
 package ui
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.ProductoBinding
+
 import com.squareup.picasso.Picasso
+import databases.ModeloProductosBBDD
+import network.ProductosResponseItem
 
-class PLAdapter(private val onClickProductos: (ModeloProductosResponse) -> Unit) :
-    ListAdapter<ModeloProductosResponse, PLAdapter.ViewHolder>(DiffUtilCallback) {
 
-    inner class ViewHolder(val binding: ProductoBinding) :
-        RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: ProductoBinding = ProductoBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding)
+
+class PLAdapter (val items:List<ModeloProductosBBDD>, val context: Context): RecyclerView.Adapter<PLAdapter.ViewHolder>()  {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PLAdapter.ViewHolder {
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.producto, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val producto = getItem(position)
-        holder.binding.tvNombre.text = producto.nombre
-        Picasso.get().load(producto.imgurl).placeholder(R.mipmap.ic_launcher).into(holder.binding.ivImagen)
-        holder.binding.root.setOnClickListener { (onClickProductos(producto)) }
+    override fun onBindViewHolder(holder: PLAdapter.ViewHolder, position: Int) {
+        val data = items[position]
+        holder.put(data)
+    }
+
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+    class ViewHolder(view: View):RecyclerView.ViewHolder(view){
+        val binding = ProductoBinding.bind(view)
+        fun put(item: ModeloProductosBBDD){
+            binding.tvNombre.text = item.name
+            binding.tvPrecio.text = item.regularPrice.toString()
+        }
+
     }
 
 }
-
-private object DiffUtilCallback : DiffUtil.ItemCallback<ModeloProductosResponse>() {
-
-    override fun areItemsTheSame(oldItem: ModeloProductosResponse, newItem: ModeloProductosResponse): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: ModeloProductosResponse, newItem: ModeloProductosResponse): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-}
-

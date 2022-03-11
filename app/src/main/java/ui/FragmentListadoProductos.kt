@@ -10,6 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.FragmentListadoProductosBinding
+import databases.DatabaseManager
+import databases.interfaceDDBB
+import network.NetworkManager
+
+
 import network.ProductosResponseItem
 
 
@@ -17,9 +22,15 @@ class FragmentListadoProductos : Fragment() {
 
     private lateinit var binding: FragmentListadoProductosBinding
     private lateinit var adapter: PLAdapter
+    private lateinit var db: interfaceDDBB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        db = DatabaseManager.getInstance(requireContext().applicationContext).roomDb().apply {
+            NetworkManager.setDDBB(this)
+        }
+
+
     }
 
     override fun onCreateView(
@@ -32,23 +43,16 @@ class FragmentListadoProductos : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PLAdapter {
-            ModeloProductos ->
-            val args = Bundle()
-            args.putString("id",ModeloProductos.id)
-            findNavController().navigate(R.id.action_fragmentListadoProductos_to_detalleProductos)
-        }
+
 
         binding.btnIrfav.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_fragmentListadoProductos_to_favFragment)
         }
 
-        var list  = mutableListOf<ProductosResponseItem>()
-        list.add(ProductosResponseItem(available = true,"APEX",2.0,"agua","agu","pe",2.0,3))
+        var list  = db?.getAll()
+        NetworkManager.getProducts()
+        adapter = PLAdapter(db?.getAll(), view.context)
 
-
-
-        adapter.submitList(list)
         binding.rvListadoProductos.adapter = adapter
         binding.rvListadoProductos.layoutManager = GridLayoutManager(context,2)
     }

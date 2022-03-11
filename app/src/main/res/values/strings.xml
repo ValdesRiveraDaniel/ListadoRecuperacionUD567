@@ -8,4 +8,9 @@
     <string name="ver_favoritos">Ver Favoritos</string>
     <string name="button">Button</string>
     <string name="ir_a_favoritos">Ir a favoritos</string>
+    <string name="precio">Precio</string>
+    <string name="euro">€</string>
+    <string name="favorito">favorito</string>
+    <string name="no_favorito">No favorito</string>
+    <string name="Favorito">Favorito</string>
 </resources>

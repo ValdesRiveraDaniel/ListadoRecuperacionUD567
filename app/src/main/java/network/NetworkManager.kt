@@ -22,7 +22,7 @@ object NetworkManager {
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder().baseUrl(
-            "http://192.168.1.50:1111/"
+            "http://192.168.1.41:1111/"
         ).addConverterFactory(GsonConverterFactory.create()).build()
     }
 

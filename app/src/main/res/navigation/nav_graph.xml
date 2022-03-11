@@ -21,7 +21,11 @@
         android:id="@+id/detalleProductos"
         android:name="ui.DetalleProductos"
         android:label="fragment_detalle_productos"
-        tools:layout="@layout/fragment_detalle_productos" />
+        tools:layout="@layout/fragment_detalle_productos" >
+        <argument
+            android:name="idItem"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/favFragment"
         android:name="ui.favFragment"
