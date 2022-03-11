@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.FragmentDetalleProductosBinding
 import com.example.listadorecuperacionud567.databinding.FragmentListadoProductosBinding
+import databases.DatabaseManager
+import databases.interfaceDDBB
+import network.NetworkManager
 import network.ProductosResponseItem
 
 
@@ -18,11 +21,16 @@ class DetalleProductos : Fragment() {
 
     private lateinit var binding: FragmentDetalleProductosBinding
     private lateinit var adapter: DLAdapter
+    private lateinit var db: interfaceDDBB
 
     val args: DetalleProductosArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        db = DatabaseManager.getInstance(requireContext().applicationContext).roomDb().apply {
+
+        }
     }
 
 //    override fun onCreateView(
@@ -39,13 +47,18 @@ class DetalleProductos : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val test = args.idItem
-        println("Valdes la chupa")
-        println(test)
-        this.binding = FragmentDetalleProductosBinding.inflate(inflater,container,false)
+
+        binding = FragmentDetalleProductosBinding.inflate(inflater,container,false)
         return binding.root
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val idItem = args.idItem
+        val item = db.findByTitle(idItem)
+        binding.tvNombreDt.text = item.name
+
+    }
 
 }

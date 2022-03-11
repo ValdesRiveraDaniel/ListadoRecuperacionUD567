@@ -53,7 +53,19 @@ class FragmentListadoProductos : Fragment() {
         NetworkManager.getProducts()
         adapter = PLAdapter(db?.getAll(), view.context)
 
+
         binding.rvListadoProductos.adapter = adapter
         binding.rvListadoProductos.layoutManager = GridLayoutManager(context,2)
+
+        adapter.setOnItemClickListener(object : PLAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                var item = adapter.items.get(position)
+                val action = FragmentListadoProductosDirections.actionFragmentListadoProductosToDetalleProductos(item.id)
+                Navigation.findNavController(view).navigate(action)
+
+            }
+
+        })
+
     }
 }

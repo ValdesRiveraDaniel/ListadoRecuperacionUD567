@@ -9,7 +9,7 @@ interface interfaceDDBB {
     @Query("SELECT * FROM ModeloProductosBBDD")
     fun getAll(): List<ModeloProductosBBDD>
 
-    @Query("SELECT * FROM ModeloProductosBBDD WHERE id LIKE :id")
+    @Query("SELECT * FROM ModeloProductosBBDD WHERE id = :id")
     fun findByTitle(id: String): ModeloProductosBBDD
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

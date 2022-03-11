@@ -15,14 +15,12 @@ import databases.ModeloProductosBBDD
 import network.ProductosResponseItem
 
 
-
-
 class PLAdapter (val items:List<ModeloProductosBBDD>, val context: Context): RecyclerView.Adapter<PLAdapter.ViewHolder>()  {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): PLAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.producto, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.producto, parent, false), mListener)
     }
 
     override fun onBindViewHolder(holder: PLAdapter.ViewHolder, position: Int) {
@@ -34,13 +32,26 @@ class PLAdapter (val items:List<ModeloProductosBBDD>, val context: Context): Rec
     override fun getItemCount(): Int {
         return items.size
     }
-    class ViewHolder(view: View):RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View, listener: onItemClickListener):RecyclerView.ViewHolder(view){
         val binding = ProductoBinding.bind(view)
         fun put(item: ModeloProductosBBDD){
             binding.tvNombre.text = item.name
             binding.tvPrecio.text = item.regularPrice.toString()
         }
+        init {
+            itemView.setOnClickListener{
+                listener.onItemClick(adapterPosition)
+            }
+        }
+    }
+    private lateinit var mListener:onItemClickListener
 
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mListener = listener
     }
 
 }
