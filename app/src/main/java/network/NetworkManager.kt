@@ -48,6 +48,7 @@ object NetworkManager {
                 "regularPrice" to regularPrice, "discountPrice" to discountPrice, "available" to avaiable, "imageUrl" to imageUrl)
 
             val call = getRetrofit().create(networkService::class.java).postData(jsonRequest1)
+
             val products = call.body()
         }
     }

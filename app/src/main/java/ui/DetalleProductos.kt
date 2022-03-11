@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.listadorecuperacionud567.R
 import com.example.listadorecuperacionud567.databinding.FragmentDetalleProductosBinding
-import com.example.listadorecuperacionud567.databinding.FragmentListadoProductosBinding
+import com.squareup.picasso.Picasso
 import databases.DatabaseManager
 import databases.interfaceDDBB
 import network.NetworkManager
 import network.ProductosResponseItem
+import android.R
+
+
+
 
 
 class DetalleProductos : Fragment() {
@@ -58,6 +61,10 @@ class DetalleProductos : Fragment() {
         val idItem = args.idItem
         val item = db.findByTitle(idItem)
         binding.tvNombreDt.text = item.name
+        binding.tvPrecioDt.text = item.regularPrice.toString()
+        binding.tvPrecioDescuentoDt.text = item.discountPrice.toString()
+        binding.tvDescripcionDt.text = item.description
+        Picasso.get().load(item.imageUrl).into(binding.ivDetalle)
 
     }
 

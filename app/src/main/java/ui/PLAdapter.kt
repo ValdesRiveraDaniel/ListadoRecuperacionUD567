@@ -37,6 +37,7 @@ class PLAdapter (val items:List<ModeloProductosBBDD>, val context: Context): Rec
         fun put(item: ModeloProductosBBDD){
             binding.tvNombre.text = item.name
             binding.tvPrecio.text = item.regularPrice.toString()
+            Picasso.get().load(item.imageUrl).into(binding.ivImagen)
         }
         init {
             itemView.setOnClickListener{

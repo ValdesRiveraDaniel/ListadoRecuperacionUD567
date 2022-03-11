@@ -30,5 +30,5 @@
         android:id="@+id/favFragment"
         android:name="ui.favFragment"
         android:label="fragment_fav"
-        tools:layout="@layout/fragment_fav" />
+        tools:layout="@layout/fragment_anadir" />
 </navigation>
